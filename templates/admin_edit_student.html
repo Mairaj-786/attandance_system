@@ -1,0 +1,20 @@
+{% extends 'admin_base.html' %}
+{% block custom_page%}
+    <div class="card card-primary p-4 w-100">
+            <div class="card-header ">
+              <h3 class="card-title">Add Student</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <form method="POST" >
+            {% csrf_token %}
+              {% comment %} {{u_form}} {% endcomment %}
+              {{u_form}}
+              {{p_form}}
+            <button class="btn btn-warning w-100 m-auto font-weight-bold">Edit Student</button>
+            </form>
+            
+        </div>
+{% endblock %}

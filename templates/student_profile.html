@@ -1,0 +1,26 @@
+{% extends 'student_base.html' %}
+{% load static %}
+{% block style  %}
+  <link rel="stylesheet" href="{% static 'style/profile.css'%}">
+  {% endblock%}
+
+{% block custom_page%}
+    <div class="profile">
+        <h1 class="test w-100">Edit Information</h1>
+        <div class="profile_pic">
+            <img src={{ user.student.profile_pic.url }}>
+        </div>
+        <div class="account_information">
+            <h2 class="test w-100 text-muted text-uppercase">Account Information</h2>
+        </div>
+        <form method='POST' enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {{u_form.as_p}}
+            {{p_form.as_p}}
+            <button type='submit' class="btn btn-warning w-25">Update</button>
+        </form>
+        {% for message in messages%}
+            <div class="alert alert-success">{{message}}</div>
+        {% endfor %}
+    </div>
+{% endblock %}

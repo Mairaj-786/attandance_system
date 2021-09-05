@@ -1,0 +1,23 @@
+{% extends 'admin_base.html' %}
+{% block title %}
+  <title>Admin | Manage Leave</title>
+  {% endblock %}
+{% block style  %}
+  <style>
+  .status{
+    position:absolute;
+    right:10% !important;
+  }
+  label{
+    display:none !important;
+  }
+  </style>
+{% endblock%}
+{% block custom_page%}
+{% comment %} {{manage_leave.leave_message}} {% endcomment %}
+<form method="POST" novalidate>
+{% csrf_token %}
+  {{lsaform.as_p}}
+  <button class="btn btn-info">Submit</button>
+</form>
+{% endblock %}

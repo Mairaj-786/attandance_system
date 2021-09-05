@@ -1,0 +1,68 @@
+{% extends 'admin_base.html' %}
+{% block custom_page%}
+          <div class="card card-primary p-4 w-100">
+            <div class="card-header ">
+              <h3 class="card-title">Add Student</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <form method="POST" novalidate>
+              {% csrf_token %}
+              <div class="form-group mt-2">
+                <input class="form-control" name="first_name" placeholder="First Name">
+              </div>
+              <div class="form-group mt-2">
+                <input class="form-control" name="username" placeholder="Username">
+              </div>
+              <div class="form-group mt-2">
+                <input class="form-control" name="email" placeholder="Email">
+              </div>
+              <div class="form-group mt-2">
+                <input class="form-control" name="address" placeholder="Address">
+              </div>
+              <div class="form-group mt-2">
+                <input class="form-control" name="password" placeholder="Password">
+              </div>
+            <button class="btn btn-success w-100 m-auto font-weight-bold">Add Student</button>
+            </form>
+              {% for m in messages%}
+                  <div class="alert alert-danger mt-4">{{m}}</div>
+              {% endfor %}
+        </div>
+        <h1 class="pb-3">All Students</h1>
+          <div class="students">
+              <table class="table">
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Course</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">Address</th>
+                      <th scope="col" style="width:300px">Edit & Del</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for student in students %}
+                    <tr>
+                      <th scope="row">{{student.admin.id}}</th>
+                      <td>{{student.admin.first_name}}</td>
+                      <td>{{student.admin.username}}</td>
+                      <td>{{student.admin.email}}</td>
+                      <td>{{student.course.course_name}}</td>
+                      <td>{{student.gender}}</td>
+                      <td>{{student.address}}</td>
+                      <td><a href="admin-edit-students/{{student.id}}" type="button" class="btn btn-warning btn-sm">Edit</a> & <a type="button" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+        </div>
+
+{% endblock %}

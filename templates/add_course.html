@@ -1,0 +1,44 @@
+{% extends 'admin_base.html' %}
+{% block custom_page %}
+    <div class='add_course pt-5'>
+        <h3>Add Course</h3>
+            <form method="POST" novalidate>
+            {% csrf_token %}
+            <div class="w-25">{{ad_course}}</div>
+            <button class=" btn btn-success w-25 mt-2">Add</button>
+            </form>
+            {% for message in messages%}
+                <div class="after_hide aler alert-success w-25 mt-3 p-4">{{message}}</div>
+            {% endfor %}
+    </div>
+    <div class="course_data pt-5 mt-5">
+         <h1 class="pb-3">All Courses</h1>
+          <div class="students">
+              <table class="table">
+                <table class="table w-50">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col" style="width:300px">Edit & Del</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for course in courses %}
+                    <tr>
+                      <th scope="row">{{course.id}}</th>
+                      <td>{{course.course_name}}</td>
+                      <td><button type="button" class="btn btn-warning btn-sm">Edit</button> & <button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+    </div>
+{% endblock %}
+
+<script>
+$( document ).ready(function() {
+    alert( "ready!" );
+});
+</script>

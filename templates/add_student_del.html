@@ -1,0 +1,26 @@
+
+<h1>Add stu</h1>
+<form method="POST">
+{% csrf_token %}
+    <div>
+        <input name="username" type="text" placeholder="Username">
+    </div>
+    <br>
+    <div>
+        <input name="first_name" placeholder="first_name">
+    </div>
+    <br>
+    <div>
+        <input name="email" placeholder="Email">
+    </div>
+    <br>
+    <div>
+        <input name="password" placeholder="password">
+    </div>
+    <br>
+    <div>
+        <input name="address" placeholder="address">
+    </div>
+    <br>
+    <button>login</button>
+</form>

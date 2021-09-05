@@ -1,0 +1,35 @@
+.profile {
+    position: relative;
+    width: 100%;
+    padding: 2em 4em;
+    box-shadow: 0px 6px 5px;
+    background: #fff;
+    border-radius: 5px;
+}
+.profile h1 {
+    font-weight: bold;
+}
+.profile_pic {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.profile_pic img {
+    width: 150px;
+    height: 150px;
+}
+.profile_pic input {
+    margin-top: 5em;
+}
+
+.account_information {
+    padding-top: 1.5em;
+}
+
+.errorlist {
+    position: relative;
+}
+
+.errorlist li::marker {
+    display: none !important;
+}

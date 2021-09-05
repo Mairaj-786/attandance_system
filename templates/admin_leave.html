@@ -1,0 +1,49 @@
+{% extends 'admin_base.html' %}
+{% block title %}
+  <title>Admin | Leave</title>
+  {% endblock %}
+{% block style  %}
+  <style>
+  .status{
+    position:absolute;
+    right:10% !important;
+  }
+  label{
+    display:none !important;
+  }
+  </style>
+{% endblock%}
+{% block custom_page%}
+  <div class="manage_leave mt-5">
+      <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Message</th>
+                      <th scope="col" style="width:300px">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for sl in student_leave %}
+                    <tr>
+                      <th scope="row">{{sl.id}}</th>
+                      <td>{{sl.student_id.admin.first_name}}</td>
+                      <td>{{sl.leave_date}}</td>
+                      <td>{{sl.leave_message}}</td>
+                      {% if sl.status == "Aprove"%}
+                      <td><a href="manage-leave/{{sl.id}}" class="btn btn-success disabled">{{sl.status}}</a></td>
+                      {% elif sl.status == "Reject"%}
+                      <td><a href="manage-leave/{{sl.id}}" class="btn btn-danger disabled">{{sl.status}}</a></td>
+                      {% else %}
+                      <td><a href="manage-leave/{{sl.id}}" class="btn btn-warning">{{sl.status}}</a></td>
+                      {% endif %}
+                      <td>
+                    </tr>
+                    {% comment %} {{admin_leave_form}} {% endcomment %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+  </div>
+{% endblock %}

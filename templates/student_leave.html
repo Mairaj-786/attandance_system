@@ -1,0 +1,66 @@
+{% extends 'student_base.html' %}
+{% block custom_page %}
+    <div class='student_leave pt-5'>
+        <h3>Student leave</h3>
+        <form method='POST' novalidate>
+            {% for fm in leave_form %}
+              {% csrf_token %}
+                  <div class="form-group">
+                      <div class="w-100">
+                          {{fm}}
+                      </div>
+                      <br>
+                      <b class="error">{{fm.errors|striptags}}</b> 
+                  </div>
+              {% endfor %}
+            <div class="mt-4">
+              <button class="btn btn-info">Apply for leave</button>
+            </div>
+        </form>
+      </div>
+    {% if leave_date%}
+      <div class="all_leaves mt-2">
+          <div class="card card-primary  w-100">
+            <div class="card-header ">
+              <h3 class="card-title">Leave Apply History</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <table class="table">
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Leave Date</th>
+                      <th scope="col">Leave Message</th>
+                      <th scope="col">Leave Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  
+                    {% for row in leave_date %}
+                    <tr>
+                      <th scope="row">{{row.id}}</th>
+                      <td>{{row.leave_date}}</td>
+                      <td>{{row.leave_message}}</td>
+                      {% if row.status == 'Panding'%}
+                        <td><button class="btn btn-warning">Panding</button></td>
+                      {% elif row.status == "Aprove" %}
+                        <td><button class="btn btn-success">Aprove</button></td>
+                      {% else%}
+                        <td><button class="btn btn-danger">rejected</button></td>
+                      {% endif %}
+                    </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <div></div>
+                {% endif %}
+        </div>
+      </div>
+      <div class="">
+        <h2>Total Leaves</h2>
+      </div>
+{% endblock %}
